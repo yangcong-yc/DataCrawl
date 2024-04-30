@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yangcong.datacrawl.dao.ProductInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.yangcong.datacrawl.entity.ProductInfo">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="brand" column="brand" jdbcType="VARCHAR"/>
+        <result property="model" column="model" jdbcType="VARCHAR"/>
+        <result property="weight" column="weight" jdbcType="VARCHAR"/>
+        <result property="productParts" column="product_parts" jdbcType="VARCHAR"/>
+        <result property="productSubParts" column="product_sub_parts" jdbcType="VARCHAR"/>
+        <result property="productName" column="product_name" jdbcType="VARCHAR"/>
+        <result property="productCode" column="product_code" jdbcType="VARCHAR"/>
+        <result property="productPrice" column="product_price" jdbcType="VARCHAR"/>
+        <result property="productDescription" column="product_description" jdbcType="VARCHAR"/>
+        <result property="photoUrl" column="photo_url" jdbcType="VARCHAR"/>
+        <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+        <result property="updatedAt" column="updated_at" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id
+        ,brand,model,weight,
+        product_parts,product_sub_parts,product_name,
+        product_code,product_price,product_description,
+        photo_url,created_at,updated_at
+    </sql>
+
+    <insert id="insertBatch" keyColumn="id" keyProperty="id" useGeneratedKeys="true" parameterType="java.util.List">
+        INSERT INTO product_info (brand,model,weight,
+        product_parts,product_sub_parts,product_name,
+        product_code,product_price,product_description,
+        photo_url) VALUES
+        <foreach collection="allProductInfos" separator="," item="item">
+            ( #{item.brand}, #{item.model},#{item.weight},#{item.productParts},#{item.productSubParts},
+            #{item.productName}, #{item.productCode},#{item.productPrice},#{item.productDescription},#{item.photoUrl}
+            )
+        </foreach>
+    </insert>
+
+    <delete id="deleteAllProductUrlInfo">
+        delete
+        from product_info
+        where 1 = 1
+    </delete>
+    <delete id="deleteAllProductInfo">
+        delete
+        from product_info
+        where 1 = 1
+    </delete>
+
+
+    <select id="selectAll" resultType="com.yangcong.datacrawl.entity.ProductInfo">
+        select *
+        from product_info
+    </select>
+    <select id="selectDataByProductName" resultType="com.yangcong.datacrawl.entity.ProductInfo">
+select <include refid="Base_Column_List"/> from  product_info where product_parts = #{productName}
+
+
+    </select>
+    <select id="getNoBrandProduct" resultType="com.yangcong.datacrawl.entity.ProductInfo">
+        select <include refid="Base_Column_List"/>
+            from product_info where brand is null
+    </select>
+    <select id="getBrandProduct" resultType="com.yangcong.datacrawl.entity.ProductInfo">
+        select <include refid="Base_Column_List"/>
+        from product_info where brand is not null
+    </select>
+</mapper>

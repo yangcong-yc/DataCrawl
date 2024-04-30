@@ -1,0 +1,57 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      url: jdbc:mysql://localhost:3306/data_crawl
+      username: root
+      password: root
+#      url: jdbc:mysql://192.168.16.100:3306/hw_parts
+#      username: dev_web
+#      password: IyCIoYpznkSx6LLh!
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      test-on-borrow: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 30000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      #      filters: stat,wall,log4j
+      connectionProperties:
+        druid.stat.mergeSql: true
+        druid.stat.slowSqlMillis: 5000
+
+
+
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml,classpath:mapper/*/*.xml
+  type-aliases-package: com.yangcong
+  configuration:
+    #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+time:
+  cron: 0 18 16 25 4 *
+
+#
+#logging:
+#  config: classpath:*.logback.xml
+#  level:
+#    com.yangcong.datacrawl: trace
+
+
+
+#自定义参数
+network:
+  cookie_value: vsettings=; rxVisitor=17138570089295QRBDUN2O1R3AJKB0RFJIVGUNJ37SD4T; _gid=GA1.2.377897362.1713862312; _fbp=fb.1.1713862312617.818477389; _hjSessionUser_1966167=eyJpZCI6IjU2OWEzMWE3LTg0NmItNTBkOC04ZmE4LTZhMGFkNWRjMTI0ZSIsImNyZWF0ZWQiOjE3MTM4NjIzMTMzMjYsImV4aXN0aW5nIjp0cnVlfQ==; __stripe_mid=b25e1d96-5754-4a6d-8baa-807f4c9e45ec16c573; volses=3b7a6783-b60d-3dd7-bd74-1204ea19f8f8; ASPSESSIONIDQARSSBSR=DNHGFNADNBHPDKJHLBNGMIOD; dtCookie=v_4_srv_6_sn_D4AB2FEA82C31E27D36A937AFB6609F7_perc_100000_ol_0_mul_1_app-3A110b643356060ee6_1; TS01e1b643=014f69ac9b16ac317026a504881a029ffade45a2af427ad026bfcba7744a9ff14233a921172b90ff41304c11837f9cd4fd5d701409e66c5cfcf5ef81e05a8c13c1e6919a4c; ASPSESSIONIDSCRTQATR=EFGAFNADCBEJFEFJKCDBLILM; __stripe_sid=77360881-d232-439e-9743-483762db4ca978c705; _gcl_au=1.1.1958749165.1713862312.82194059.1714373602.1714373602; CustomerID=DDDC7D70323722A1DEC1175B0839F8EC1415EB08A9ED767089B46C25F4C5229D; UserConfig=Config%5FOrderDetailID=2214422&LastName=yang&FirstName=cong&CustomerID=16606&Email=1772748735%40qq%2Ecom; returnAddress=http%3A%2F%2Fwww%2Efpe%2Dstore%2Ecom%2Fproduct%2Dp%2F1320278210%2Ehtm; TS014fe2d9_30=01cab3fd34456eb2b9b0671191f2267226363413c29b0cac24ce025d6c4ceea129049d2669b54be0c6e3eccfc01ee1236c6d550e78; _hjSession_1966167=eyJpZCI6ImFjMGRmZGQ1LTJhZGQtNDU5NC1iNWNjLTc4MzJkMTg0YzY3NiIsImMiOjE3MTQzNzM2MjA5NDEsInMiOjEsInIiOjAsInNiIjowLCJzciI6MCwic2UiOjAsImZzIjowLCJzcCI6MH0=; _ga=GA1.1.114318622.1713862312; slt=72AEC844-5C78-494C-B94E-EA0C3D31E504; TS014fe2d9=014f69ac9b162a923721e46689f10fca4769471d5ed3fca369ec1074b2e85f417e62e74ca3e943e0fccdf348356f48c118c1df134bb5e45487f954f88debcb5413f41241b2e201f86e9bf3c457fb11e81a2aae0c2cd28f2d0355f132133a0e7d295024bb67334fce05c0eaa28f83f41fb6b63b031ffb5f5f3a1435ed9519a33c53670bf34393afc6ba33c759a0ce42035e17b63553cb42c6c03f286a3173104273df61838ab351ebf1d699f9431719a2e2aa3ab54a; _ga_CKNRPPNHJK=GS1.1.1714373597.32.1.1714373691.60.0.0; dtPC=6$173691584_50h1vUWSCKOSGTPCSNLUMEPQQKHRKFHUCCCUG-0e0; dtSa=-; rxvt=1714375492609|1714372215982
+  cookie_name: Cookie
+
+
+file:
+  path: E:\\workFile\\

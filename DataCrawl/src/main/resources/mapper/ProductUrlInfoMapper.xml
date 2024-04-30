@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yangcong.datacrawl.dao.ProductUrlInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.yangcong.datacrawl.entity.ProductUrlInfo">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="firstDirectory" column="first_directory" jdbcType="VARCHAR"/>
+        <result property="secondDirectory" column="second_directory" jdbcType="VARCHAR"/>
+        <result property="threeDirectory" column="three_directory" jdbcType="VARCHAR"/>
+        <result property="fourDirectory" column="four_directory" jdbcType="VARCHAR"/>
+        <result property="directoryUrl" column="directory_url" jdbcType="VARCHAR"/>
+        <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+        <result property="updatedAt" column="updated_at" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,first_directory,second_directory,
+        three_directory,four_directory,directory_url,
+        created_at,updated_at
+    </sql>
+    <delete id="deleteAll">
+        delete
+        from product_url_info
+        where 1 = 1
+    </delete>
+    <select id="selectAll" resultType="com.yangcong.datacrawl.entity.ProductUrlInfo">
+        select
+        <include refid="Base_Column_List"/>
+        from product_url_info
+        where 1 = 1
+
+    </select>
+</mapper>
